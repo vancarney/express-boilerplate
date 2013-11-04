@@ -76,11 +76,7 @@ doccoCallback=()->
   
 sassCallback=()->
 
-# Begin Tasks
-# ## *build*
-# Compiles Sources
-task 'build', 'Compiles Sources', ()-> build -> log ':)', green
-build = ()->
+proc=()->
   # From Command 'assets'
   #  Copies Assets from src directory in build directory 
   exec "cp -r src/assets/ public"
@@ -93,11 +89,24 @@ build = ()->
   #  
   # exec "jade --path #{paths.jade[3]} -v --pretty --out #{paths.jade[2]}" 
   #exec 'jade --path src/jade/include -v --pretty --out public src/jade/templates'
-
-
+watchExec = ()-> 
+  console.log "watch exec"
+  #exec "npm start"
+# Begin Tasks
+# ## *build*
+# Compiles Sources
+task 'build', 'Compiles Sources', ()-> build -> log ':)', green
+build = (w,callback)->
+  if typeof w is 'function'
+    callback = w
+    w = false
+  if w
+    exec "supervisor -e 'js|coffee|jade|scss|css|html' -n exit -q -w src -x 'cake' build" 
+  else
+    proc callback
 # ## *watch*
 # watch project src folders and build on change
-task 'watch', 'watch project src folders and build on change', ()-> watch -> log ':)', green
+task 'watch', 'watch project src folders and build on change', ()-> build true
 watch = ()->
   
 

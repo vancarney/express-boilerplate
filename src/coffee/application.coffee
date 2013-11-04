@@ -10,7 +10,9 @@ crypto        = require 'crypto'
 {controllers, utils, Boot} = require('require_tree').require_tree './lib' 
 {cpus}        = require 'os'
 {debug, error, log} = require 'util'
+
 port          = process.env.PORT || 3000
+foo = "it worked"
 
 if cluster.isMaster
   # scoped fork function for master to create children
