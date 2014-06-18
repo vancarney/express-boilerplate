@@ -23,8 +23,8 @@
     send:(response)->
       @res.send response
     emit:(response)->
-    handRequest:(req,res,next)->
-      console.log 'handRequest'
+    handleRequest:(req,res,next)->
+      console.log 'handling Request'
       # @__domain.add req
       # @__domain.add res
       # next()

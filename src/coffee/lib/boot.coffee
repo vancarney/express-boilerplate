@@ -3,6 +3,7 @@ fs      = require 'fs'
 module.exports.Boot = (parent, options)->
   verbose = options.verbose
   fs.readdirSync("#{__dirname}/../routes").forEach (name)->
+    return if name.match /^\./ 
     verbose && console.log "\n   #{name}:"
     obj = require "./../routes/#{name}"
     name = obj.name || name
