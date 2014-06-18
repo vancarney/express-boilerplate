@@ -1,0 +1,14 @@
+/* line 2, ../../src/scss/app.scss */
+body {
+  margin: none;
+  padding: none;
+}
+
+/* line 8, ../../src/scss/app.scss */
+header {
+  margin: none;
+  min-height: 280px;
+  background-color: #888;
+  color: #333;
+  font-size: 3em;
+}
