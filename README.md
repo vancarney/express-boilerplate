@@ -9,6 +9,12 @@ Setup/Update
 	sudo npm install
 ```
 
+Running
+-----------
+```
+	npm start
+```
+
 Building
 -----------
 ```
