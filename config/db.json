@@ -1,0 +1,53 @@
+{
+  "development": {
+    "mongo":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": ""
+    },
+    "pgsql":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": "",
+      "params":{
+        "dialect": "postgres"
+      }
+    }
+  },
+  "test": {
+    "mongo":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": ""
+    },
+    "pgsql":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": "",
+      "params":{
+        "dialect": "postgres"
+      }
+    }
+  },
+  "production": {
+    "mongo":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": ""
+    },
+    "pgsql":{
+      "username": "",
+      "password": "",
+      "host": "",
+      "database": "",
+      "params":{
+        "dialect": "postgres"
+      }
+    }
+  }
+}

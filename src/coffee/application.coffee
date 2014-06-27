@@ -13,9 +13,9 @@ logger        = require 'express-logger'
 expressDomain = require 'express-domain-middleware'
 {cpus}        = require 'os'
 {debug, error, log} = require 'util'
-{controllers, utils, Boot} = require('require_tree').require_tree './lib'
-host          = process.env.HOST || '0.0.0.0'
-port          = process.env.PORT || 3000
+{config, Boot} = require('require_tree').require_tree './lib'
+host          = process.env.HOST || config.host || '0.0.0.0'
+port          = process.env.PORT || config.port || 3000
 # tests if thread is Master Process
 if cluster.isMaster
   # scoped fork function for master to create children
@@ -34,17 +34,17 @@ else
   app = express()
   app.set 'port', port
   app.set 'views', "#{__dirname}/views"
-  app.set 'view engine', 'jade'
+  app.set 'view engine', config.view_engine
   app.use favicon "#{__dirname}/public/favicon.ico"
-  app.use logger path:"#{__dirname}/#{process.env.NODE_ENV || 'dev'}.log"
+  app.use logger path:"#{__dirname}/#{config.env || 'development'}.log"
   app.use bodyParser()
   app.use methodOverride()
   app.use errorhandler()
   app.use expressDomain
   app.use staticPath "#{__dirname}/public"
   # invokes route loading
-  Boot app, verbose: true
+  Boot app, verbose: config.env.match /^(development|test)+$/
   # starts listening for inbound connections
   app.listen port, host, (-> 
-    console.log "\u001b[32mExpress Service available at: \u001b[36mhttp://0.0.0.0:#{port}\u001b[0m"
+    console.log "\u001b[32mExpress Service available at: \u001b[36mhttp://#{host}:#{port}\u001b[0m"
   )
