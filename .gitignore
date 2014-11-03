@@ -16,6 +16,7 @@ Rakefile
 # Node Modules #
 ################
 node_modules/*
+public/bower_components/*
 
 # Environment settings #
 ########################
